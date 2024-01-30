@@ -21,15 +21,15 @@ This project was built as part of the [Codecademy Full-Stack Engineer Career Pat
 
 [x] **Come Up with a Topic** - What types of messages should be the output?
 
-[] **Create Script and run it locally** - create JavaScript file locally and run with Node.
+[x] **Create Script and run it locally** - create JavaScript file locally and run with Node.
 
-[] **Set up version control** - set up Git tracking in working directory and add and commit changes
+[x] **Set up version control** - set up Git tracking in working directory and add and commit changes
 
-[] **Store message components** - Need to provide at least 3 different sources of data and how to store these components?
+[x] **Store message components** - Need to provide at least 3 different sources of data and how to store these components?
 
-[] **Create the message** - Add functionality to randomly select the different message components so they create a cohesive message.
+[x] **Create the message** - Add functionality to randomly select the different message components so they create a cohesive message.
 
-[] **Put the program together** - Combine the different parts of the program so the random messages are selected, combined, and then displayed to the user each time they run the program.
+[x] **Put the program together** - Combine the different parts of the program so the random messages are selected, combined, and then displayed to the user each time they run the program.
 
 ## Approach
 
@@ -56,10 +56,31 @@ The interface is _(for now)_ the CLI. The user will simply run the script and re
 | finish up documentation | 1 | `30 Jan` |
 | **TOTAL** | **6.5** |  | 
 
-### 3. 
+### 3. Build, Test & Deploy
 
 🐳 **Ship it!**
+
+### 4. Obstacles
+
+- certain combination of words require the template string 
+
+    "You will [`VERB`] a [`ADJECTIVE`] [`NOUN`] today."
+
+    to be switched to 
+
+    "You will [`VERB`] ***an*** [`ADJECTIVE`] [`NOUN`] today.`
+
+- what happens when no word can be retrieved? (output a default fall-back message)
 
 ## Conclusion
 
 This project gave me the opportunity to think about software design and project management. Apart from being able to break the project up into small tasks, it taught me being specific enough about the requirements while at the same time maintaining focus on the crucial features only in order to keep the timeline.
+
+When writing tests, I thought about scenarios that might happen and that made me build defaults templates for those cases. For example, if any list of words is empty, the output should be a default fall-back message.
+
+## Next Steps
+
+- separate out database for word collections
+- separate out test scripts and make part of the CI/CD pipeline
+- pull in random words from external source (e.g. https://www.randomlists.com/nouns)
+- turn script into Web Application
