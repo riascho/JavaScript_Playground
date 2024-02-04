@@ -2,28 +2,29 @@ const nouns = ["pasta", "movie", "music", "species", "cake", "color", "island", 
 const adjectives = ["new", "expensive", "rich", "pink", "futuristic", "free", "important", "ugly", "spicey"];
 const verbs = ["create","invent","discover","imagine","notice","complain about","wonder about", "think about"];
 
-function getRandom(wordCollection) {
-    if (!wordCollection.length) return "";
-    else return wordCollection[Math.floor(Math.random() * wordCollection.length)];
+function getRandomWord(wordCollection) {
+    return wordCollection.length
+        ? wordCollection[Math.floor(Math.random() * wordCollection.length)]
+        : "";
 }
 
-function vowelFirstLetter(word) {
+function getIndefiniteArticle(word) {
     if (["o","u","e","a","i"].includes(word[0])) return "an";
     else return "a";
 }
 
-let verb = getRandom(verbs);
-let adjective = getRandom(adjectives);
-let article = vowelFirstLetter(adjective);
-let noun = getRandom(nouns);
+const verb = getRandomWord(verbs);
+const adjective = getRandomWord(adjectives);
+const article = getIndefiniteArticle(adjective);
+const noun = getRandomWord(nouns);
 
-const output = (verb, adjective, noun) => {
-if (verb === "" || adjective === "" || noun === "") {console.log("You will have a great day today!")}
-else 
-console.log(`You will ${verb} ${article} ${adjective} ${noun} today.`);
+const getOutput = (verb, adjective, noun) => { // Implicit return by not using brackets in arrow functions
+    (!verb || !adjective || !noun)
+        ? "You will have a great day today!"
+        : `You will ${verb} ${article} ${adjective} ${noun} today.`;
 }
 
-output(verb, adjective, noun);
+console.log(getOutput(verb, adjective, noun));
 
 
 // TESTS
