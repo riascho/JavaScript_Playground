@@ -18,11 +18,10 @@ const adjective = getRandomWord(adjectives);
 const article = getIndefiniteArticle(adjective);
 const noun = getRandomWord(nouns);
 
-const getOutput = (verb, adjective, noun) => { // Implicit return by not using brackets in arrow functions
+const getOutput = (verb, adjective, noun) => // Implicit return by not using brackets in arrow functions
     (!verb || !adjective || !noun)
         ? "You will have a great day today!"
         : `You will ${verb} ${article} ${adjective} ${noun} today.`;
-}
 
 console.log(getOutput(verb, adjective, noun));
 
