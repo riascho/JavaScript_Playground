@@ -1,5 +1,20 @@
 {
+  "name": "javascript_playground",
+  "version": "1.0.0",
+  "main": "CreditCardValidation.js",
   "devDependencies": {
-    "prettier": "3.2.4"
-  }
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.2.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint '**/*.js'",
+    "format": "npx prettier --write '**/*.js'",
+    "run": "npx http-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
