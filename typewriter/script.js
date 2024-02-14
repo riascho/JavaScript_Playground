@@ -1,3 +1,5 @@
+// with the help of GPT #typewriter
+
 const techStack = ['Python', 'Flask', 'Javascript', 'HTML', 'CSS'];
 const techStackSpan = document.getElementById('typewriter');
 const pauseBetweenWords = 1500;
@@ -33,3 +35,31 @@ document.addEventListener('DOMContentLoaded', typeTechStack);
 //     }
 // }
 // document.addEventListener('DOMContentLoaded', setInterval(updateTechStack, pauseBetweenWords));
+
+// Maria's reconstruction exercise #typewriter2
+
+const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const weekDaySpan = document.getElementById('typewriter2');
+let indexWeekday = 0;
+let indexLetter = 0;
+
+function typeWeekday() {
+    let day = weekDays[indexWeekday];
+    weekDaySpan.textContent += day[indexLetter];
+    setTimeout(typeWeekday, 200);
+    console.log(indexLetter);
+    if (indexLetter < day.length) {
+        indexLetter++;
+    } else {
+        weekDaySpan.textContent = '';
+        indexLetter = 0;
+        if (indexWeekday < weekDays.length - 1) {
+            indexWeekday++;
+            typeWeekday;
+        } else {
+            indexWeekday = 0;
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', typeWeekday);
