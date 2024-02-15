@@ -42,24 +42,34 @@ const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Satur
 const weekDaySpan = document.getElementById('typewriter2');
 let indexWeekday = 0;
 let indexLetter = 0;
+const typeSpeed = 200;
+const displayTime = 1500;
+let day = weekDays[indexWeekday];
+
+// explain walk through to a rubber duck !
 
 function typeWeekday() {
-    let day = weekDays[indexWeekday];
-    weekDaySpan.textContent += day[indexLetter];
-    setTimeout(typeWeekday, 200);
-    console.log(indexLetter);
-    if (indexLetter < day.length) {
-        indexLetter++;
-    } else {
+    function typeDay() {
+        weekDaySpan.textContent += day[indexLetter];
+        if (indexLetter < day.length - 1) {
+            setTimeout(typeWeekday, typeSpeed);
+            indexLetter++;
+        } else {
+            setTimeout((day = getNextDay), displayTime);
+            typeDay;
+        }
+    }
+
+    function getNextDay() {
         weekDaySpan.textContent = '';
         indexLetter = 0;
         if (indexWeekday < weekDays.length - 1) {
-            indexWeekday++;
-            typeWeekday;
+            return weekDays[indexWeekday + 1];
         } else {
-            indexWeekday = 0;
+            day = weekDays[0];
         }
     }
+    typeDay();
 }
 
 document.addEventListener('DOMContentLoaded', typeWeekday);
