@@ -11,5 +11,8 @@
         "ecmaFeatures": {
             "impliedStrict": true
         }
+    }, 
+    "rules":{
+        "no-shadow":"warn"
     }
 }
