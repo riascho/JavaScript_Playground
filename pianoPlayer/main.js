@@ -8,10 +8,24 @@
 
 // The keys and notes variables store the piano keys
 // plucks out the corresponding DOM elements and stores them as such
-const keys = ['c-key', 'd-key', 'e-key', 'f-key', 'g-key', 'a-key', 'b-key', 'high-c-key', 'c-sharp-key', 'd-sharp-key', 'f-sharp-key', 'g-sharp-key', 'a-sharp-key'];
+const keys = [
+    'c-key',
+    'd-key',
+    'e-key',
+    'f-key',
+    'g-key',
+    'a-key',
+    'b-key',
+    'high-c-key',
+    'c-sharp-key',
+    'd-sharp-key',
+    'f-sharp-key',
+    'g-sharp-key',
+    'a-sharp-key'
+];
 const notes = keys.map(function (key) {
     return document.getElementById(key);
-})
+});
 
 // simple skeuomorphic design for when a key is played
 function applyKeyDownVisual(event) {
@@ -54,7 +68,7 @@ nextOne.onclick = function () {
     document.getElementById('letter-note-six').innerHTML = 'C';
     nextTwo.hidden = false;
     nextOne.hidden = true;
-}
+};
 
 // anonymous event handler property and function for the second progress button
 nextTwo.onclick = function () {
@@ -67,7 +81,7 @@ nextTwo.onclick = function () {
     nextThree.hidden = false;
     nextTwo.hidden = true;
     lastLyric.style.display = 'inline-block';
-}
+};
 
 // anonymous event handler property and function for the third progress button
 nextThree.onclick = function () {
@@ -86,7 +100,7 @@ nextThree.onclick = function () {
     startOver.hidden = false;
     nextThree.hidden = true;
     lastLyric.style.display = 'none';
-}
+};
 
 // This is the event handler property and function for the startOver button
 startOver.onclick = function () {
@@ -104,4 +118,4 @@ startOver.onclick = function () {
     document.getElementById('letter-note-six').innerHTML = 'B';
     nextOne.hidden = false;
     startOver.hidden = true;
-}
+};

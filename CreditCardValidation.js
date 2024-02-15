@@ -14,12 +14,12 @@ If there is no remainder, the credit card number is valid.
 **/
 
 // Step 1: Get sum of credit card number
-const summarizeCreditCard = creditCard => {
+const summarizeCreditCard = (creditCard) => {
     // checkDigit is added to sum as it is
     // reverse the payload array so the 2nd last digit is now the first
-    let payload = creditCard.slice(0, -1).toReversed()
-    let sum = creditCard[creditCard.length - 1]
-    // Iterating over the reversed payload and doubling every 2nd digit. 
+    let payload = creditCard.slice(0, -1).toReversed();
+    let sum = creditCard[creditCard.length - 1];
+    // Iterating over the reversed payload and doubling every 2nd digit.
     payload.forEach((value, index) => {
         if (index % 2 === 0) {
             let doubled = value * 2;
@@ -33,26 +33,27 @@ const summarizeCreditCard = creditCard => {
         else {
             sum += value;
         }
-    })
+    });
     return sum;
-}
+};
 
 // Step 2: Check if sum of all numbers (including checkDigit is divisible by 10)
-const validateCreditCard = creditCard => {
+const validateCreditCard = (creditCard) => {
     if (summarizeCreditCard(creditCard) % 10 === 0) {
         return true;
     } else {
         return false;
     }
-}
+};
 
 // The role of findInvalidCards() is to check through the nested array for which numbers are invalid
 // and return another nested array of invalid cards.
 const findInvalidCards = (listOfCreditCards) => {
-    return listOfCreditCards.filter((creditCard) => validateCreditCard(creditCard) === false)
-}
+    return listOfCreditCards.filter((creditCard) => validateCreditCard(creditCard) === false);
+};
 
-const companiesData = [ // list of objects
+const companiesData = [
+    // list of objects
     {
         name: 'Amex',
         cardPrefix: 3
@@ -69,7 +70,7 @@ const companiesData = [ // list of objects
         name: 'Discover',
         cardPrefix: 6
     }
-]
+];
 
 /* Attempt to improve
 
@@ -109,10 +110,10 @@ const idInvalidCardCompanies = (nestedArray) => {
         affectedCompanies.push('MasterCard');
     }
     if (invalidCards.some(discover)) {
-        affectedCompanies.push('Discover')
+        affectedCompanies.push('Discover');
     }
     return affectedCompanies;
-}
+};
 
 // takes a creditcard number typed as string and return array of integers
 const convertStringToNumbers = (string) => {
@@ -124,20 +125,19 @@ const convertStringToNumbers = (string) => {
         }
     }
     return output;
-}
+};
 
 // function that can creates valid creditcard numbers
 // the remainder is distributed to the last digit (returns altered last digit)
 const convertInvalidToValid = (array) => {
     let remainder = summarizeCreditCard(array) % 10;
     if (remainder > 5) {
-        array[array.length - 1] += (10 - remainder);
-    }
-    else if (remainder <= 5) {
+        array[array.length - 1] += 10 - remainder;
+    } else if (remainder <= 5) {
         array[array.length - 1] -= remainder;
     }
     return array;
-}
+};
 
 // All valid credit card numbers
 const valid1 = [4, 5, 3, 9, 6, 7, 7, 9, 0, 8, 0, 1, 6, 8, 0, 8];
@@ -176,25 +176,25 @@ const batch = [
     mystery2,
     mystery3,
     mystery4,
-    mystery5,
+    mystery5
 ];
 
 // TESTS
 
-console.log(`should return true:`)
+console.log(`should return true:`);
 console.log(validateCreditCard(valid1));
 console.log(validateCreditCard(valid2));
 console.log(validateCreditCard(valid3));
 console.log(validateCreditCard(valid4));
 console.log(validateCreditCard(valid5));
-console.log(`should return false:`)
+console.log(`should return false:`);
 console.log(validateCreditCard(invalid1));
 console.log(validateCreditCard(invalid2));
 console.log(validateCreditCard(invalid3));
 console.log(validateCreditCard(invalid4));
 console.log(validateCreditCard(invalid5));
 
-console.log(`mysteries`)
+console.log(`mysteries`);
 console.log(validateCreditCard(mystery1));
 console.log(validateCreditCard(mystery2));
 console.log(validateCreditCard(mystery3));
@@ -206,11 +206,11 @@ console.log(validateCreditCard(convertInvalidToValid(mystery1)));
 console.log(validateCreditCard(convertInvalidToValid(mystery3)));
 console.log(validateCreditCard(convertInvalidToValid(mystery4)));
 
-console.log(`should return ['Visa','Amex','Discover']`)
+console.log(`should return ['Visa','Amex','Discover']`);
 console.log(idInvalidCardCompanies(batch));
 // check if your card is valid or not: (letters are ignored)
-let myCard = "34682786hh245685oooo"
-console.log(`should return array of only numbers:`)
+let myCard = '34682786hh245685oooo';
+console.log(`should return array of only numbers:`);
 console.log(convertStringToNumbers(myCard));
 
 console.log(`should return true if you entered your real credit number in variable myCard:`);
