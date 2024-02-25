@@ -49,27 +49,26 @@ let day = weekDays[indexWeekday];
 // explain walk through to a rubber duck !
 
 function typeWeekday() {
-    function typeDay() {
-        weekDaySpan.textContent += day[indexLetter];
-        if (indexLetter < day.length - 1) {
-            setTimeout(typeWeekday, typeSpeed);
-            indexLetter++;
-        } else {
-            setTimeout((day = getNextDay), displayTime);
-            typeDay;
-        }
+    weekDaySpan.textContent += day[indexLetter];
+    if (indexLetter < day.length - 1) {
+        setTimeout(typeWeekday, typeSpeed);
+        indexLetter++;
+    } else {
+        setTimeout(getNextDay, displayTime);
+        typeWeekday;
     }
 
     function getNextDay() {
         weekDaySpan.textContent = '';
         indexLetter = 0;
+        console.log(indexWeekday);
         if (indexWeekday < weekDays.length - 1) {
-            return weekDays[indexWeekday + 1];
+            day = weekDays[indexWeekday + 1];
         } else {
             day = weekDays[0];
+            console.log('stuck here');
         }
     }
-    typeDay();
 }
 
 document.addEventListener('DOMContentLoaded', typeWeekday);
