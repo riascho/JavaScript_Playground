@@ -43,31 +43,21 @@ const weekDaySpan = document.getElementById('typewriter2');
 let indexWeekday = 0;
 let indexLetter = 0;
 const typeSpeed = 200;
-const displayTime = 1500;
-let day = weekDays[indexWeekday];
-
-// explain walk through to a rubber duck !
+const displayTime = 1000;
 
 function typeWeekday() {
+    let day = weekDays[indexWeekday];
     weekDaySpan.textContent += day[indexLetter];
     if (indexLetter < day.length - 1) {
         setTimeout(typeWeekday, typeSpeed);
         indexLetter++;
     } else {
-        setTimeout(getNextDay, displayTime);
-        typeWeekday;
-    }
-
-    function getNextDay() {
-        weekDaySpan.textContent = '';
-        indexLetter = 0;
-        console.log(indexWeekday);
-        if (indexWeekday < weekDays.length - 1) {
-            day = weekDays[indexWeekday + 1];
-        } else {
-            day = weekDays[0];
-            console.log('stuck here');
-        }
+        setTimeout(() => {
+            weekDaySpan.textContent = '';
+            indexLetter = 0;
+            indexWeekday < weekDays.length - 1 ? indexWeekday++ : (indexWeekday = 0);
+            typeWeekday();
+        }, displayTime);
     }
 }
 
