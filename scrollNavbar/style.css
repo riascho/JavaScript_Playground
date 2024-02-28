@@ -1,0 +1,13 @@
+body {
+    background-color: darksalmon;
+    margin: 0;
+}
+
+header {
+    background-color: whitesmoke;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-evenly;
+}
