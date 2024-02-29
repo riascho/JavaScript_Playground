@@ -1,6 +1,5 @@
 body {
-    /* background-color: darksalmon; */
-    background-image: url("coffee.jpg");
+    background-color: white;
     background-size: cover;
     margin: 0;
 }
@@ -12,11 +11,17 @@ ol {
 
 header {
     width: 100%;
+    transition: 1.5s ease;
 }
 
 .sticky {
-    background-color: hsla(0, 0%, 96%, 0.8);
+    background-color: hsla(0, 0%, 100%, 0);
     position: fixed;
+    top: 0;
+}
+
+.shift {
+    transform: translate(-30px);
 }
 
 .flex {
@@ -31,10 +36,10 @@ header {
     border: 1px solid red;
     padding: 13px;
     flex-shrink: 1;
+    transition: transform 1.8s ease-out;
 }
 
 #nav-menu {
-    background-color: lightslategray;
     flex-shrink: 2;
 }
 
