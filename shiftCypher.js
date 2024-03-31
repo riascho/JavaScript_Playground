@@ -22,39 +22,46 @@ class ShiftCipher {
     constructor(shiftValue) {
         this.shiftValue = shiftValue;
     }
+    unicodeAlphabetCapLettersStart = 65;
+    unicodeAlphabetCapLettersEnd = 90;
+
+    /** takes a UTF-16 code unit and determines if it is a upper case letter (A-Z) */
+    isCharUpperCaseLetter(UTFcodeUnit) {
+        return UTFcodeUnit >= this.unicodeAlphabetCapLettersStart && UTFcodeUnit <= this.unicodeAlphabetCapLettersEnd;
+    }
 
     /** takes a plain text string and returns a capitalized string with each letter shifted forward in the alphabet based on the set shift value. */
-    encrypt(textstring) {
-        const capitalizedTextstring = textstring.toUpperCase();
-        let output = '';
-        for (let i = 0; i < capitalizedTextstring.length; i++) {
-            let letter = capitalizedTextstring.charCodeAt(i);
-            if (letter > 64 && letter < 91) {
-                letter += this.shiftValue;
-                if (letter > 90) {
-                    let overlap = letter % 90; //write test for this!
-                    letter = 64 + overlap;
+    encrypt(messageText) {
+        const capitalizedMessageText = messageText.toUpperCase();
+        let encryptedString = '';
+        for (let i = 0; i < capitalizedMessageText.length; i++) {
+            let char = capitalizedMessageText.charCodeAt(i);
+            if (this.isCharUpperCaseLetter(char)) {
+                char += this.shiftValue;
+                if (char > this.unicodeAlphabetCapLettersEnd) {
+                    let overlap = char % this.unicodeAlphabetCapLettersEnd; //write test for this!
+                    char = this.unicodeAlphabetCapLettersStart - 1 + overlap;
                 }
             }
-            output += String.fromCharCode(letter);
+            encryptedString += String.fromCharCode(char);
         }
-        return output;
+        return encryptedString;
     }
     /** takes an encrypted message and returns a lower case string with each letter shifted back in the alphabet based on the set shift value. */
     decrypt(encryptedMessage) {
-        let output = '';
+        let decryptedString = '';
         for (let i = 0; i < encryptedMessage.length; i++) {
-            let letter = encryptedMessage.charCodeAt(i);
-            if (letter > 64 && letter < 91) {
-                letter -= this.shiftValue;
-                if (letter < 65) {
-                    let overlap = 65 % letter; //write test for this!
-                    letter = 91 - overlap;
+            let char = encryptedMessage.charCodeAt(i);
+            if (this.isCharUpperCaseLetter(char)) {
+                char -= this.shiftValue;
+                if (char < this.unicodeAlphabetCapLettersStart) {
+                    let overlap = this.unicodeAlphabetCapLettersStart % char; //write test for this!
+                    char = this.unicodeAlphabetCapLettersEnd + 1 - overlap;
                 }
             }
-            output += String.fromCharCode(letter);
+            decryptedString += String.fromCharCode(char);
         }
-        return output.toLowerCase();
+        return decryptedString.toLowerCase();
     }
 }
 
