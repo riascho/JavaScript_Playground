@@ -1,38 +1,52 @@
-const timezoneURL = 'http://worldtimeapi.org/api/timezone/Asia/Singapore';
-const newsAPIkey = '2ebebdae3083441289f79a2d14ecc7e6';
+// how fetch() works (with chaining promises)
+
+fetch("https://jsonplaceholder.typicode.com/todos/1") // returns promise that resolves to response object
+  .then((response) => {
+    return response.json(); // response object has json() method that returns a promise as well that resolves to the JSON data
+  })
+  .then((data) => {
+    // the resolved promise which is the JSON data
+    console.log(data);
+  })
+  .catch((error) => console.log(error));
+
+// using fetch() with async/await
+
+const timezoneURL = "http://worldtimeapi.org/api/timezone/Asia/Singapore";
+const newsAPIkey = "2ebebdae3083441289f79a2d14ecc7e6";
 const countryNewsURL = `https://newsapi.org/v2/top-headlines?country=sg&apiKey=${newsAPIkey}`;
 const newsURL = `https://newsapi.org/v2/everything?q=n8n&from=2024-04-26&sortBy=publishedAt&apiKey=${newsAPIkey}`;
 
 async function getNews() {
-    const response = await fetch(newsURL);
-    const data = await response.json();
-    console.log(data);
+  const response = await fetch(newsURL);
+  const data = await response.json();
+  console.log(data);
 }
 
-const artistID = '06HL4z0CvFAxyc27GXpf02';
-const spotifyClientID = 'f790a166473d45ce94baf0d602ba804a';
-const spotifyKey = '7a9567d7604842fd8027acd323e488f1';
-const redirect_uri = 'https://localhost:3000';
+const artistID = "06HL4z0CvFAxyc27GXpf02";
+const spotifyClientID = "f790a166473d45ce94baf0d602ba804a";
+const spotifyKey = "7a9567d7604842fd8027acd323e488f1";
+const redirect_uri = "https://localhost:3000";
 const spotifyURL = `https://api.spotify.com/v1/artists/${artistID}`;
 
 async function getSpotify() {
-    const request = new Request(spotifyURL, {
-        headers: {
-            Authorization: `Bearer 1234`
-        }
-    });
-    try {
-        const response = await fetch(request);
-        const data = await response.json();
-        console.log(data);
-        if (response.ok) {
-            console.log('Success', data);
-        } else {
-            console.log('Success, but! \nServer Error:', data.error.message);
-        }
-    } catch (error) {
-        console.log('Error:', error);
+  const request = new Request(spotifyURL, {
+    headers: {
+      Authorization: `Bearer 1234`,
+    },
+  });
+  try {
+    const response = await fetch(request); // promise resolved to response object
+    const data = await response.json(); // response object promise resolved to JSON data
+    console.log(data);
+    if (response.ok) {
+      console.log("Success", data);
+    } else {
+      console.log("Success, but! \nServer Error:", data.error.message);
     }
+  } catch (error) {
+    console.log("Error:", error);
+  }
 }
 
 getSpotify();
